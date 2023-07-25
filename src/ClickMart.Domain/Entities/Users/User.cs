@@ -1,7 +1,7 @@
-﻿using AgileShop.Domain.Enums;
+﻿using ClickMart.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace AgileShop.Domain.Entities.Users;
+namespace ClickMart.Domain.Entities.Users;
 
 public class User : Human
 {

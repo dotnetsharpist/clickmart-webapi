@@ -1,21 +1,31 @@
+using ClickMart.Service.Interfaces.Categories;
+using ClickMart.DataAccess.Interfaces.Categories;
+using ClickMart.DataAccess.Repositories.Categories;
+using ClickMart.Service.Interfaces.Common;
+using ClickMart.Service.Services.Common;
+using ClickMart.Service.Services.Categories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
+app.MapControllers();
 app.Run();
