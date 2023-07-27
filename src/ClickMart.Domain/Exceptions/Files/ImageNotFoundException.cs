@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ClickMart.Domain.Exceptions.Files;
+﻿namespace ClickMart.Domain.Exceptions.Files;
 
 public class ImageNotFoundException : NotFoundException
 {

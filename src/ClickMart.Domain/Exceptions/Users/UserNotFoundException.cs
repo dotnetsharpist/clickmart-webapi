@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ClickMart.Domain.Exceptions.Users;
 
-namespace ClickMart.Domain.Exceptions.Users
+public class UserNotFoundException : NotFoundException
 {
-    public class UserNotFoundException : NotFoundException
+    public UserNotFoundException()
     {
-        public UserNotFoundException()
-        {
-            this.TitleMessage = "User not found!";
-        }
+        this.TitleMessage = "User not found";
     }
 }

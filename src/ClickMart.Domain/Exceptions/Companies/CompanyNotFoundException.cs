@@ -4,6 +4,6 @@ public class CompanyNotFoundException : NotFoundException
 {
     public CompanyNotFoundException()
     {
-        this.TitleMessage = "Company not found!";
+        this.TitleMessage = "Company not found";
     }
 }

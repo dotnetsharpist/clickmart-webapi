@@ -56,7 +56,7 @@ public class CategoryService : ICategoryService
         if (category is null) throw new CategoryNotFoundException();
 
         var result = await _fileService.DeleteImageAsync(category.ImagePath);
-        if (!result) throw new ImageNotFoundException();
+        if (result == false) throw new ImageNotFoundException();
 
         var dbResult = await _repository.DeleteAsync(categoryId);
         return dbResult > 0;
