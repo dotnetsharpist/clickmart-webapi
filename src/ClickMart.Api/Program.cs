@@ -1,21 +1,24 @@
-using ClickMart.Service.Interfaces.Categories;
-using ClickMart.DataAccess.Interfaces.Categories;
-using ClickMart.DataAccess.Repositories.Categories;
+using ClickMart.DataAccess.Interfaces.Products;
+using ClickMart.DataAccess.Repositories.Products;
 using ClickMart.Service.Interfaces.Common;
+using ClickMart.Service.Interfaces.Products;
 using ClickMart.Service.Services.Common;
-using ClickMart.Service.Services.Categories;
-using ClickMart.DataAccess.Repositories.Companies;
-using ClickMart.Service.Interfaces.Companies;
-using ClickMart.Service.Services.Companies;
+using ClickMart.Service.Services.Products;
 using ClickMart.WebApi.Configurations;
 using ClickMart.WebApi.Configurations.Layers;
 using ClickMart.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductRepository, ProductsRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.ConfigureJwtAuth();
@@ -38,5 +41,3 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
-

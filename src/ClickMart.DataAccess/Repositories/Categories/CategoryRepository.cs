@@ -29,11 +29,6 @@ namespace ClickMart.DataAccess.Repositories.Categories
             }
         }
 
-        public async Task<string[]> GetCategoriesName()
-        {
-            return new string[23];
-        }
-
         public async Task<int> CreateAsync(Category entity)
         {
             try

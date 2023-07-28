@@ -4,7 +4,7 @@ namespace ClickMart.DataAccess.Common.Interfaces;
 
 public interface ISearchable<Tmodel>
 {
-    public Task<(int ItemsCount, IList<Tmodel>)> SearchAsync(
+    public Task<IList<Tmodel>> SearchAsync(
         string search,
         PaginationParams @params);
 }

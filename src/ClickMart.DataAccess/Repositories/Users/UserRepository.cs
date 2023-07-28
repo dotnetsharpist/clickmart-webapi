@@ -1,4 +1,5 @@
-﻿using ClickMart.DataAccess.Interfaces.Users;
+﻿using ClickMart.DataAccess.Common.Interfaces;
+using ClickMart.DataAccess.Interfaces.Users;
 using ClickMart.DataAccess.Repositories;
 using ClickMart.DataAccess.Utils;
 using ClickMart.DataAccess.ViewModels.Users;
@@ -35,7 +36,7 @@ public class UserRepository : BaseRepository, IUserRepository
         {
             await _connection.OpenAsync();
             string query = "INSERT INTO public.users(first_name, last_name, phone_number, phone_number_confirmed, passport_seria_number, is_male, birth_date, country, region, password_hash, salt, image_path, last_activity, identity_role, created_at, updated_at) " +
-                $"VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PassportSeriaNumber, @IsMale, '{entity.BirthDate.Year}-{entity.BirthDate.Month}-{entity.BirthDate.Day}', @Country, @Region, @PasswordHash, @Salt, @ImagePath, @LastActivity, @IdentityRole, @CreatedAt, @UpdatedAt);";
+                $"VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PassportSeriaNumber, @IsMale, '{entity.BirthDate.Year}-{entity.BirthDate.Month}-{entity.BirthDate.Day}', @Country, @Region, @PasswordHash, @Salt, @ImagePath, @LastActivity, @Role, @CreatedAt, @UpdatedAt);";
             return await _connection.ExecuteAsync(query, entity);
         }
         catch
@@ -101,6 +102,11 @@ public class UserRepository : BaseRepository, IUserRepository
     }
 
     public Task<int> UpdateAsync(long id, User entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<IList<UserViewModel>> ISearchable<UserViewModel>.SearchAsync(string search, PaginationParams @params)
     {
         throw new NotImplementedException();
     }

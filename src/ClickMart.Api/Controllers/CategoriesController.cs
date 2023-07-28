@@ -9,6 +9,7 @@ namespace ClickMart.WebApi.Controllers;
 
 [Route("api/categories")]
 [ApiController]
+
 public class CategoriesController : ControllerBase
 {
     private readonly ICategoryService _service;

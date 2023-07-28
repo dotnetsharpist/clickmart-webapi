@@ -74,7 +74,7 @@ public async Task<(bool Result, int CachedVerificationMinutes)> SendCodeForRegis
             TimeSpan.FromMinutes(CACHED_MINUTES_FOR_VERIFICATION));
 
         SmsMessage smsMessage = new SmsMessage();
-        smsMessage.Title = "Agile Shop";
+        smsMessage.Title = "ClickMart";
         smsMessage.Content = "Your verification code : " + verificationDto.Code;
         smsMessage.Recipent = phone.Substring(1);
 
@@ -129,9 +129,11 @@ private async Task<bool> RegisterToDatabaseAsync(RegisterDto registerDto)
     var hasherResult = PasswordHasher.Hash(registerDto.Password);
     user.PasswordHash = hasherResult.Hash;
     user.Salt = hasherResult.Salt;
+        user.BirthDate = TimeHelper.GetDateTime();
 
     user.CreatedAt = user.UpdatedAt = user.LastActivity = TimeHelper.GetDateTime();
     user.Role = Domain.Enums.IdentityRole.User;
+    
 
     var dbResult = await _userRepository.CreateAsync(user);
     return dbResult > 0;

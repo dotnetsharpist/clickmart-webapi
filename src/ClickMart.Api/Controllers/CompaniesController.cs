@@ -30,7 +30,7 @@ public class CompaniesController : ControllerBase
         => Ok(await _service.GetByIdAsync(companyId));
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> CreateAsync([FromForm] CompanyCreateDto dto)
     {
         var validator = new CompanyCreateValidator();
@@ -40,7 +40,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpPut("{companyId}")]
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> UpdateAsync(long companyId, [FromForm] CompanyUpdateDto dto)
     {
         var validator = new CompanyUpdateValidator();
